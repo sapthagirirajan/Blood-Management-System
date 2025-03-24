@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-center">View Hospitals</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Contact</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for hospital in hospitals %}
+        <tr>
+            <td>{{ hospital[0] }}</td>
+            <td>{{ hospital[1] }}</td>
+            <td>{{ hospital[2] }}</td>
+            <td>{{ hospital[3] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

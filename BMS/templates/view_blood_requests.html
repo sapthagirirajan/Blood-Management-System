@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-center mb-4">View Blood Requests</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Blood Group</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Hospital</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in blood_requests %}
+        <tr>
+            <td>{{ request[0] }}</td>
+            <td>{{ request[1] }}</td>
+            <td>{{ request[2] }}</td>
+            <td>{{ request[3] }}</td>
+            <td>{{ request[4] }}</td>
+            <td>{{ request[5] }}</td>
+            <td>
+                {% if request[4] == 'Pending' %}
+                    <a href="{{ url_for('update_request', request_id=request[0], action='approve') }}" 
+                       class="btn btn-success btn-sm">
+                        <i class="fas fa-check"></i> Approve
+                    </a>
+                    <a href="{{ url_for('update_request', request_id=request[0], action='reject') }}" 
+                       class="btn btn-danger btn-sm">
+                        <i class="fas fa-times"></i> Reject
+                    </a>
+                {% else %}
+                    <span class="badge {% if request[4] == 'Approved' %}bg-success{% else %}bg-danger{% endif %}">
+                        {{ request[4] }}
+                    </span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

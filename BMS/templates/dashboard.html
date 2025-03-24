@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-center mb-4">Dashboard</h2>
+<div class="row">
+    <!-- Total Donors Card -->
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-primary h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="fas fa-users"></i> Total Donors</h5>
+                <p class="card-text display-4">{{ total_donors }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Total Patients Card -->
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-success h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="fas fa-procedures"></i> Total Patients</h5>
+                <p class="card-text display-4">{{ total_patients }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Pending Requests Card -->
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-warning h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="fas fa-exclamation-circle"></i> Pending Requests</h5>
+                <p class="card-text display-4">{{ pending_requests }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Total Blood Units Card -->
+    <div class="col-md-3 mb-4">
+        <div class="card text-white bg-danger h-100">
+            <div class="card-body text-center">
+                <h5 class="card-title"><i class="fas fa-tint"></i> Total Blood Units</h5>
+                <p class="card-text display-4">{{ total_blood }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Action Buttons -->
+<div class="text-center mt-4">
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('add_donor') }}" class="btn btn-success btn-lg w-100"><i class="fas fa-plus"></i> Add Donor</a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('view_donors') }}" class="btn btn-info btn-lg w-100"><i class="fas fa-list"></i> View Donors</a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('add_patient') }}" class="btn btn-success btn-lg w-100"><i class="fas fa-plus"></i> Add Patient</a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('view_patients') }}" class="btn btn-info btn-lg w-100"><i class="fas fa-list"></i> View Patients</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('add_hospital') }}" class="btn btn-success btn-lg w-100"><i class="fas fa-plus"></i> Add Hospital</a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('view_hospitals') }}" class="btn btn-info btn-lg w-100"><i class="fas fa-list"></i> View Hospitals</a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('add_blood_inventory') }}" class="btn btn-success btn-lg w-100"><i class="fas fa-plus"></i> Add Blood Inventory</a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('view_blood_inventory') }}" class="btn btn-info btn-lg w-100"><i class="fas fa-list"></i> View Blood Inventory</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('add_blood_request') }}" class="btn btn-success btn-lg w-100"><i class="fas fa-plus"></i> Add Blood Request</a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ url_for('view_blood_requests') }}" class="btn btn-info btn-lg w-100"><i class="fas fa-list"></i> View Blood Requests</a>
+        </div>
+    </div>
+</div>
+
+<!-- Replace any existing approve/reject buttons with these -->
+{% if request.status == 'Pending' %}
+    <a href="{{ url_for('update_request', request_id=request.id, action='approve') }}" 
+       class="btn btn-success btn-sm">
+        <i class="fas fa-check"></i> Approve
+    </a>
+    <a href="{{ url_for('update_request', request_id=request.id, action='reject') }}" 
+       class="btn btn-danger btn-sm">
+        <i class="fas fa-times"></i> Reject
+    </a>
+{% endif %}
+{% endblock %}

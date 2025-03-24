@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-center mb-4">View Blood Inventory</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Blood Group</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inventory in blood_inventory %}
+        <tr>
+            <td>{{ inventory[0] }}</td>
+            <td>{{ inventory[1] }}</td>
+            <td>{{ inventory[2] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

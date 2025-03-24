@@ -1,0 +1,4 @@
+first install requirements by pip install -r requirements.txtline 
+next change the mysql password in app.py number 14 (enter ur sql password)
+
+now just run by python app.py
